@@ -1,60 +1,50 @@
 // Author: Igor Dimitrijević (@igorskyflyer)
 
-import type { AstroComponentFactory } from '@astro-render/factory.js'
 import {
   experimental_AstroContainer as AstroContainer,
   type ContainerRenderOptions
 } from 'astro/container'
 
+export type AstroComponentFactory = Parameters<
+  AstroContainer['renderToString']
+>[0]
+
 /**
- * Renders an Astro component to a `DocumentFragment` in a DOM-like environment.
+ * Renders an Astro component to an HTML string using the experimental Container API.
  *
- * This utility is primarily intended for testing or server-side rendering scenarios
- * where a simulated DOM (e.g., `happy-dom`) is available. It instantiates
- * an `AstroContainer`, renders the component to an HTML string, and parses it into
- * a `DocumentFragment` for further inspection or manipulation.
+ * Server-side only utility — no DOM environment required.
+ * Perfect for Vitest tests (`@vitest-environment node`), snapshots, and SSR checks.
  *
- * @param component - The Astro component to render.
- * @param options - Optional rendering configuration passed to the container (e.g., props, slots).
- * @returns A Promise that resolves to a `DocumentFragment` containing the rendered output.
- *
- * @throws Will throw if executed in a non-DOM environment (e.g., Node.js without happy-dom`).
- * @throws Will throw if the component fails to render.
+ * @param component - Astro component (`.astro` or `.mdx` import)
+ * @param options - Rendering options (props, slots, etc.)
+ * @returns Promise<string> The rendered HTML string
  *
  * @example
- * ``` ts
- * // @​vitest-environment happy-dom
- * import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
- * import MyComponent from '../components/MyComponent.astro'
- * import { expect } from 'vitest'
+ * ```ts
+ * // @vitest-environment node
+ * import { renderAstroComponent } from '@igorskyflyer/astro-render-component'
+ * import MyComponent from '../MyComponent.astro'
  *
- * const fragment = await renderAstroComponent(MyComponent, { props: { title: 'Hello' } })
- * expect(fragment.querySelector('h1')?.textContent).toBe('Hello')
+ * const html: string = await renderAstroComponent(MyComponent, {
+ *   props: { title: 'Hi' }
+ * })
+ *
+ * expect(html).toContain('<h1>Hi</h1>')
  * ```
  */
 export async function renderAstroComponent(
   component: AstroComponentFactory,
   options: ContainerRenderOptions = {}
-): Promise<DocumentFragment> {
-  if (typeof document === 'undefined') {
-    throw new Error(
-      'renderAstroComponent requires a DOM-like environment (e.g., happy-dom)'
-    )
-  }
-
+): Promise<string> {
   try {
     const container: AstroContainer = await AstroContainer.create()
     const result: string = await container.renderToString(component, options)
 
-    const template: HTMLTemplateElement = document.createElement('template')
-    template.innerHTML = result
-
-    return template.content
+    return result
   } catch (err) {
     if (err instanceof Error) {
       throw new Error(`Failed to render Astro component: ${err.message}`)
     }
-
     throw err
   }
 }
