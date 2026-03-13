@@ -1,4 +1,4 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-    "extends": ["@igor.dvlpr/biome-config-igorskyflyer"]
+    "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+    "extends": ["@igorskyflyer/biome-config"]
 }
