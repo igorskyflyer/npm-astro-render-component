@@ -1,131 +1,192 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/main/assets/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
-<h1 align="center">Astro Render Component</h1>
+  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/main/media/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
+  <h1>Astro Render Component</h1>
 </div>
 
+<blockquote align="center">Zero-Config • DOM-Free • HTML String • Fast Node Testing</blockquote>
+
+<h4 align="center">
+  🤖 Astro component renderer. Zero configuration. Produces clean HTML strings directly in Node.js without any DOM environment. 🐬
+</h4>
+
 <br>
 
-<div align="center">
-  🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment. 🐬
-</div>
+## Table of Contents
+
+- ✨ [**Features**](#features)
+- 🕵🏼 [**Usage**](#usage)
+- 🤹🏼 [**API**](#api)
+- 🗒️ [**Examples**](#examples)
+- ⚙️ [**Implementation**](#implementation)
+- 🎯 [**Motivation**](#motivation)
+- 📝 [**Changelog**](#changelog)
+- 🪪 [**License**](#license)
+- 💖 [**Support**](#support)
+- 🧬 [**Related**](#related)
+- 👨🏻‍💻 [**Author**](#author)
 
 <br>
+
+## Features
+
+- ✨ Zero-config: drop in and render `Astro` components instantly
+- 🐢 Fast: pure `Node.js`, no `DOM` simulation overhead
+- 🔧 Returns clean HTML string: ready for snapshots or text checks
+- 🚫 No `happy-dom`/`jsdom` needed: runs in plain Node environment
+- ✅ Works with `Vitest`: perfect with `@vitest-environment node`
+- 📦 Tiny footprint: minimal wrapper over Astro's `Container` API
+- 🛡️ Safe types: full `TypeScript` support, exported `AstroComponentFactory`
+- 🔄 Supports `props`/`slots`: pass options just like `renderToString`
+- ⚡ Modern baseline: Node `>=24`, Astro `>=6` ready, leveraging the [**AstroContainer API**](https://docs.astro.build/en/reference/container-reference/)
+- 🧼 Clean errors: meaningful messages on render failures
+
 <br>
 
-## 📃 Table of Contents
+## Usage
 
-- [Features](#-features)
-- [Usage](#-usage)
-- [Example](#️-example)
-- [Changelog](#-changelog)
-- [Support](#-support)
-- [License](#-license)
-- [Related](#-related)
-- [Author](#-author)
-
----
-
-## 🤖 Features
-
-- 🔧 Server-side rendering of Astro components in non-Astro environments like Vitest or Node.js
-- 🧪 Test-friendly API for rendering `.astro` components with props, slots, and hydration strategies
-- 🪄 Zero-config usage—just import and render, no need for full Astro setup
-- 🧩 Supports static, lazy, and client-only hydration modes
-- 🧠 Typed API with JSDoc annotations for IntelliSense and DX-first workflows
-- 🕸️ Compatible with Astro v5+, leveraging the experimental [AstroContainer API](https://docs.astro.build/en/reference/container-reference/)
-- 🚀 Ideal for unit and integration testing of UI components
-
----
-
-## 🕵🏼 Usage
-
-Install the package using your favorite package manager:
+Install it by executing any of the following, depending on your preferred package manager:
 
 ```bash
-npm install "@igor.dvlpr/astro-render-component"
-# or
-pnpm add "@igor.dvlpr/astro-render-component"
-# or
-yarn add "@igor.dvlpr/astro-render-component"
-```  
-
-Bring your own testing framework, e.g. [Vitest](https://vitest.dev/) and your own DOM-like environment, e.g. [Happy-Dom](https://www.npmjs.com/package/happy-dom) and start rendering your Astro components in order to test them.
-
----
-
-## 🗒️ Example
-
-```ts
-// @​vitest-environment happy-dom
-import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
-import MyComponent from '../components/MyComponent.astro'
-import { expect } from 'vitest'
-
-const fragment = await renderAstroComponent(MyComponent, { props: { title: 'Hello' } })
-expect(fragment.querySelector('h1')?.textContent).toBe('Hello')
+pnpm add -D @igorskyflyer/astro-render-component
 ```
 
----
+```bash
+yarn add -D @igorskyflyer/astro-render-component
+```
 
-## 📝 Changelog
+```bash
+npm i -D @igorskyflyer/astro-render-component
+```
 
-📑 The changelog is available here: [CHANGELOG.md](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/CHANGELOG.md).
+<br>
 
----
+## API
 
-## 🪪 License
+### async renderAstroComponent()
 
-Licensed under the MIT license which is available here, [MIT license](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE.txt).
+```ts
+async function renderAstroComponent(
+  component: AstroComponentFactory,
+  options: ContainerRenderOptions = {}
+): Promise<string>
+```  
 
----
+Renders an Astro component to an HTML string using the experimental Container API.  
+Server-side only utility – no DOM environment required.  
+Perfect for Vitest tests (`@vitest-environment node`), snapshots, and SSR checks.
 
-## 💖 Support
+<br>
+
+## Examples
+
+Render an Astro component to HTML string:
+
+`MyComponent.test.ts`
+```ts
+// @vitest-environment node
+import { renderAstroComponent } from '@igorskyflyer/astro-render-component'
+import MyComponent from '../MyComponent.astro'
+
+const html: string = await renderAstroComponent(MyComponent, {
+  props: { title: 'Hello' }
+})
+
+expect(html).toContain('<h1>Hello</h1>')
+```
+
+<br>
+
+## Implementation
+
+This utility is a thin, zero-config wrapper over Astro's experimental Container API:
+
+- **Core API used**  
+  `experimental_AstroContainer.create()` → creates isolated render context  
+  `container.renderToString(component, options)` → renders to HTML string
+
+<br>
+
+- **Behavior**  
+  - Server-side only: runs in plain Node.js (no DOM, no happy-dom/jsdom)  
+  - Returns plain string containing full rendered HTML (tags, attributes, text, islands)  
+  - Supports props, slots, and other `ContainerRenderOptions`  
+  - Throws meaningful error on failure (e.g. invalid component, render crash)  
+  - No side effects, no caching, no hydration setup
+
+<br>
+
+- **Key characteristics**  
+  - Type-safe: derives `AstroComponentFactory` from `renderToString` signature  
+  - ESM-only output (.js + .d.ts)  
+  - Designed for testing (Vitest with `@vitest-environment node`) and lightweight SSR
+
+<br>
+
+## Motivation
+
+Provide the lightest possible server-side Astro component renderer: zero config, no DOM dependency, fast HTML string output for testing and SSR checks.
+
+<br>
+
+## Changelog
+
+Read about the latest changes in the [**CHANGELOG**](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/CHANGELOG.md).
+
+<br>
+
+## License
+
+Licensed under the [**MIT license**](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE).
+
+<br>
+
+## Support
 
 <div align="center">
-  I work hard for every project, including this one and your support means a lot to me!
-  <br>
-  Consider buying me a coffee. ☕
-  <br>
-  <br>
+  Engineering and documenting open-source projects<br>
+  involves a significant investment of time.
+  <br><br>
+  If this project or its implementation has provided value,<br>
+  support is greatly appreciated.
+  <br><br>
   <a href="https://ko-fi.com/igorskyflyer" target="_blank"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Donate to igorskyflyer" width="180" height="46"></a>
-  <br>
-  <br>
-  <em>Thank you for supporting my efforts!</em> 🙏😊
+  <br><br>
+  <em>Thank you for supporting these efforts!</em> 🙏😊
 </div>
 
----
+<br>
 
-## 🧬 Related
+## Related
 
-[@igor.dvlpr/astro-easynav-button](https://www.npmjs.com/package/@igor.dvlpr/astro-easynav-button)
+[@igorskyflyer/astro-easynav-button](https://www.npmjs.com/package/@igorskyflyer/astro-easynav-button)
 
 > _🧭 Add an easy-to-use navigational button (jump to top/bottom) to your Astro site. 🔼_
 
 <br>
 
-[@igor.dvlpr/astro-post-excerpt](https://www.npmjs.com/package/@igor.dvlpr/astro-post-excerpt)
+[@igorskyflyer/astro-post-excerpt](https://www.npmjs.com/package/@igorskyflyer/astro-post-excerpt)
 
 > _⭐ An Astro component that renders post excerpts for your Astro blog - directly from your Markdown and MDX files. Astro v2+ collections are supported as well! 💎_
 
 <br>
 
-[@igor.dvlpr/chars-in-string](https://www.npmjs.com/package/@igor.dvlpr/chars-in-string)
+[@igorskyflyer/chars-in-string](https://www.npmjs.com/package/@igorskyflyer/chars-in-string)
 
 > _🪐 Provides ways of testing whether an array of chars is present inside a given String. ☄_
 
 <br>
 
-[@igor.dvlpr/magic-queryselector](https://www.npmjs.com/package/@igor.dvlpr/magic-queryselector)
+[@igorskyflyer/magic-queryselector](https://www.npmjs.com/package/@igorskyflyer/magic-queryselector)
 
 > _🪄 A TypeScript-types patch for querySelector/querySelectorAll, make them return types you expect them to! 🔮_
 
 <br>
 
-[@igor.dvlpr/vscode-folderpicker](https://www.npmjs.com/package/@igor.dvlpr/vscode-folderpicker)
+[@igorskyflyer/vscode-folderpicker](https://www.npmjs.com/package/@igorskyflyer/vscode-folderpicker)
 
 > _✨ Provides a custom Folder Picker API + UI for Visual Studio Code. 🎨_
 
----
+<br>
 
-## 👨🏻‍💻 Author
-Created by **Igor Dimitrijević** ([*@igorskyflyer*](https://github.com/igorskyflyer/)).
+## Author
+Created by **Igor Dimitrijević ([*@igorskyflyer*](https://github.com/igorskyflyer/))**.
