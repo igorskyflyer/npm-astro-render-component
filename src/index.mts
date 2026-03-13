@@ -12,7 +12,7 @@ export type AstroComponentFactory = Parameters<
 /**
  * Renders an Astro component to an HTML string using the experimental Container API.
  *
- * Server-side only utility — no DOM environment required.
+ * Server-side only utility – no DOM environment required.
  * Perfect for Vitest tests (`@vitest-environment node`), snapshots, and SSR checks.
  *
  * @param component - Astro component (`.astro` or `.mdx` import)
