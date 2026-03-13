@@ -2,12 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/index.mjs",
-            "outFiles": ["${workspaceFolder}/dist/**/*.mjs"],
-            "preLaunchTask": "dev"
+            "name": "Debug",
+            "skipFiles": ["<node_internals>/**"],
+            "program": "${workspaceFolder}/dist/index.js",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+            "console": "integratedTerminal"
         }
     ]
 }
