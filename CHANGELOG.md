@@ -4,6 +4,12 @@
 
 <br>
 
+### v2.0.1 - *14-Mar-2026*
+
+- 👷🏼 **ci**: fix CI
+
+<br>
+
 ### v2.0.0 - *14-Mar-2026*
 
 ### Core Refactor & Breaking Changes
