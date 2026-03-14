@@ -16,7 +16,7 @@
     "scripts": {
         "build": "tsc",
         "test": "vitest --run --passWithNoTests",
-        "pub": "pnpm test && git push origin main --tags"
+        "pub": "pnpm test && pnpm build && git push origin main --tags"
     },
     "keywords": [
         "withastro",
