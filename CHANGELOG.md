@@ -1,16 +1,22 @@
 # 📒 Changelog
 
-## of [**@igorskyflyer/astro-render-component**](https://github.com/igorskyflyer/npm-astro-render-component)
+### of [**@igorskyflyer/astro-render-component**](https://github.com/igorskyflyer/npm-astro-render-component)
 
 <br>
 
-### v2.0.1 - *14-Mar-2026*
+## v2.0.2 - *2026-07-03*
+
+- 📦 deps: fix vulnerabilities
+
+<br>
+
+## v2.0.1 - *2026-03-14*
 
 - 👷🏼 **ci**: fix CI
 
 <br>
 
-### v2.0.0 - *14-Mar-2026*
+## v2.0.0 - *2026-03-14*
 
 ### Core Refactor & Breaking Changes
 - 🔨 logic!: refactor to pure Node.js HTML string renderer + modern baseline
@@ -40,12 +46,12 @@
 
 <br>
 
-### v1.0.1 – *09-Aug-2025*
+## v1.0.1 - *2025-08-09*
 
 - 💻 **dev**: publish to Astro integrations
 
 <br>
 
-### v1.0.0 – *09-Aug-2025*
+## v1.0.0 - *2025-08-09*
 
 - 🚀 **launch**: initial release 🎉
