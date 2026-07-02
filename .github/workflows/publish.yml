@@ -19,10 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
-      - run: npm install -g npm@latest
       - run: pnpm install
-      - run: pnpm --if-present test
       - run: pnpm exec tsc
+      - run: pnpm --if-present test
       - run: pnpm publish --access public --provenance --no-git-checks
