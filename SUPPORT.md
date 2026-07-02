@@ -54,7 +54,7 @@ Any kind of contributions are more than welcome!
 
 Need to reach me directly or share your feedback?  
 
-- Head to [my profile](https://github.com/igorskyflyer) and check out the `Let's Connect` section.
+- Head to [my profile](https://github.com/igorskyflyer#--%EF%B8%8F-lets-connect-) and check out the `Let's Connect` section.
 - Use this repository's discussion and/or issues.
 
 ---
