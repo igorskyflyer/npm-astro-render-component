@@ -1,9 +1,18 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/main/media/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
+  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/refs/heads/main/media/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
   <h1>Astro Render Component</h1>
+  <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/npm/v/@igorskyflyer/astro-render-component.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/node/v/@igorskyflyer/astro-render-component.svg" alt="Node version"></a>
+  <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/npm/dt/@igorskyflyer/astro-render-component.svg" alt="npm downloads"></a>
+  <a href="https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@igorskyflyer/astro-render-component.svg" alt="License"></a>
+  <a href="https://liberapay.com/igorskyflyer/donate"><img src="https://img.shields.io/liberapay/receives/igorskyflyer.svg?logo=liberapay"></a>
 </div>
 
-<blockquote align="center">Zero-Config • DOM-Free • HTML String • Fast Node Testing</blockquote>
+<br>
+
+<blockquote align="center">
+  Zero-Config • DOM-Free • HTML String • Fast Node Testing
+</blockquote>
 
 <h4 align="center">
   🤖 Astro component renderer. Zero configuration. Produces clean HTML strings directly in Node.js without any DOM environment. 🐬
@@ -44,7 +53,11 @@
 
 ## Usage
 
-Install it by executing any of the following, depending on your preferred package manager:
+Install it by executing any of the following, depending on the preferred package manager:
+
+```bash
+bun add -d @igorskyflyer/astro-render-component
+```
 
 ```bash
 pnpm add -D @igorskyflyer/astro-render-component
@@ -119,7 +132,6 @@ This utility is a thin, zero-config wrapper over Astro's experimental Container 
   - Type-safe: derives `AstroComponentFactory` from `renderToString` signature  
   - ESM-only output (.js + .d.ts)  
   - Designed for testing (Vitest with `@vitest-environment node`) and lightweight SSR
-
 <br>
 
 ## Motivation
@@ -143,15 +155,17 @@ Licensed under the [**MIT license**](https://github.com/igorskyflyer/npm-astro-r
 ## Support
 
 <div align="center">
-  Engineering and documenting open-source projects<br>
-  involves a significant investment of time.
-  <br><br>
-  If this project or its implementation has provided value,<br>
-  support is greatly appreciated.
-  <br><br>
-  <a href="https://ko-fi.com/igorskyflyer" target="_blank"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Donate to igorskyflyer" width="180" height="46"></a>
-  <br><br>
-  <em>Thank you for supporting these efforts!</em> 🙏😊
+  If this open-source project has saved you time or improved your workflow, consider supporting its continued development via <a href="https://liberapay.com/igorskyflyer/donate"><strong>LiberaPay</a> or <a href="https://ko-fi.com/igorskyflyer"><strong>Ko-Fi</strong></a>.
+  <br>
+  <br>
+  <a href="https://liberapay.com/igorskyflyer/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+  <br>
+  <a href="https://ko-fi.com/igorskyflyer"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Support Igor Dimitrijević (igorskyflyer) - Donate to Sustain Open-Source Projects" width="118" height="30" loading="lazy"></a>
+  <br>
+  <br>
+  <blockquote>
+    Support helps fund new open-source tools, maintenance, and documentation.
+  </blockquote>
 </div>
 
 <br>
