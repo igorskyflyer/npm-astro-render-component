@@ -2,8 +2,8 @@
   <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/refs/heads/main/media/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
   <h1>Astro Render Component</h1>
   <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/npm/v/@igorskyflyer/astro-render-component.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/node/v/@igorskyflyer/astro-render-component.svg" alt="Node version"></a>
   <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/npm/dt/@igorskyflyer/astro-render-component.svg" alt="npm downloads"></a>
+  <a href="https://www.npmjs.com/package/@igorskyflyer/astro-render-component"><img src="https://img.shields.io/node/v/@igorskyflyer/astro-render-component.svg" alt="Node version"></a>
   <a href="https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@igorskyflyer/astro-render-component.svg" alt="License"></a>
   <a href="https://liberapay.com/igorskyflyer/donate"><img src="https://img.shields.io/liberapay/receives/igorskyflyer.svg?logo=liberapay"></a>
 </div>
