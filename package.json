@@ -1,22 +1,57 @@
 {
     "name": "@igorskyflyer/astro-render-component",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "🤖 Astro component renderer. Zero configuration. Produces clean HTML strings directly in Node.js without any DOM environment. 🐬",
+    "type": "module",
     "sideEffects": false,
     "engines": {
         "node": ">=24.0"
     },
-    "type": "module",
-    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "main": "./dist/index.js",
     "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
-        "dist"
+        "dist/**/*.js",
+        "dist/**/*.d.ts"
     ],
+    "dependencies": {},
+    "peerDependencies": {
+        "astro": ">=6.0.0"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.5.2",
+        "@igorskyflyer/biome-config": "^2.4.1",
+        "@igorskyflyer/tsconfig": "^1.0.2",
+        "@types/node": "^24.13.2",
+        "typescript": "^6.0.3",
+        "vitest": "^4.1.9"
+    },
     "scripts": {
         "build": "tsc",
         "test": "vitest --run --passWithNoTests",
         "pub": "pnpm test && pnpm build && git push origin main --tags"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "packageManager": "pnpm@11.9.0",
+    "private": false,
+    "license": "MIT",
+    "author": "Igor Dimitrijević <support@igorskyflyer.me> (https://github.com/igorskyflyer)",
+    "funding": "https://ko-fi.com/igorskyflyer",
+    "homepage": "https://github.com/igorskyflyer/npm-astro-render-component",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/igorskyflyer/npm-astro-render-component.git"
+    },
+    "bugs": {
+        "url": "https://github.com/igorskyflyer/npm-astro-render-component/issues"
     },
     "keywords": [
         "withastro",
@@ -36,30 +71,5 @@
         "jest",
         "igor dimitrijević",
         "igorskyflyer"
-    ],
-    "license": "MIT",
-    "author": "Igor Dimitrijević <support@igorskyflyer.me> (https://github.com/igorskyflyer)",
-    "funding": "https://ko-fi.com/igorskyflyer",
-    "homepage": "https://github.com/igorskyflyer/npm-astro-render-component",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/igorskyflyer/npm-astro-render-component.git"
-    },
-    "bugs": {
-        "url": "https://github.com/igorskyflyer/npm-astro-render-component/issues"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "^2.4.7",
-        "@igorskyflyer/biome-config": "^2.2.0",
-        "@types/node": "^24.12.0",
-        "typescript": "^5.9.3",
-        "vitest": "^4.1.0"
-    },
-    "peerDependencies": {
-        "astro": ">=6.0.0"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "packageManager": "pnpm@10.32.1"
+    ]
 }
